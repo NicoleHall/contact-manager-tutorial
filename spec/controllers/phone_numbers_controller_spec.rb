@@ -122,7 +122,8 @@ RSpec.describe PhoneNumbersController, type: :controller do
         phone_number = PhoneNumber.create! valid_attributes
         put :update, {:id => phone_number.to_param, :phone_number => new_attributes}, valid_session
         phone_number.reload
-        skip("Add assertions for updated state")
+        expect(phone_number.number).to eq('MyNewString')
+        expect(phone_number.person_id).to eq(2)
       end
 
       it "assigns the requested phone_number as @phone_number" do
